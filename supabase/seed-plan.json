@@ -1,0 +1,26 @@
+{
+  "org": "e8e8e8e8-0000-4000-8000-000000000001",
+  "users": {
+    "owner": "dono@demo.exemplo",
+    "manager": "gestor@demo.exemplo",
+    "analyst": "analista@demo.exemplo",
+    "analyst2": "analista2@demo.exemplo",
+    "viewer": "consulta@demo.exemplo"
+  },
+  "password": "DemoLocal#2026",
+  "channels": [
+    "Loja física",
+    "Site próprio",
+    "Marketplace Alfa",
+    "Marketplace Beta",
+    "Venda direta B2B"
+  ],
+  "noCostSku": "ELE-099",
+  "unknownCostSku": "CAS-099",
+  "checksum": "a8c8995d77aff994",
+  "counts": {
+    "items": 55,
+    "observations": 581,
+    "statements": 718
+  }
+}
