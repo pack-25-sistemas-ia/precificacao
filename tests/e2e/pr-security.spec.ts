@@ -186,6 +186,7 @@ test('15 · custo ausente nunca vira zero: item sem versão não entra em cenár
   await page.goto('/custos?situacao=sem_versao');
   await expect(page.getByText('ELE-099').first()).toBeVisible();
   await page.goto('/dashboard?risk=incomplete_cost');
+  await expect(page.locator('main')).toContainText('Custo incompleto');
   expect(norm(await page.locator('main').innerText())).toContain('Custo incompleto');
 });
 

@@ -33,6 +33,8 @@ test('gestor: todas as telas abrem com dados reais e sem erro; os 17 relatórios
 test('painel: indicadores e gráficos presentes, com números que fecham com os dados', async ({ page }) => {
   await demoLogin(page, DEMO.manager);
   await page.goto('/dashboard?period=180d');
+  // espera o painel terminar de carregar antes de ler o texto (senão a leitura pega «Carregando…»)
+  await expect(page.getByText('Itens analisados', { exact: true }).first()).toBeVisible();
   const text = norm(await page.locator('main').innerText());
   for (const k of ['Itens analisados', 'Margem média simples', 'Abaixo da meta', 'Contribuição negativa', 'Custo incompleto', 'Diferença média de preço', 'Preços alterados no período', 'Cenários salvos', 'Variação de custo', 'Itens por canal']) expect(text, k).toContain(k);
   for (const g of ['Margem por categoria', 'Itens por faixa de margem', 'Preço atual × preço recomendado', 'Evolução dos custos', 'Comparação entre canais', 'Composição do preço', 'Maiores distâncias da meta', 'Cenários comparativos', 'Evolução dos preços publicados', 'Margem por produto ou serviço']) {

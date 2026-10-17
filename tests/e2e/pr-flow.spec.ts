@@ -17,7 +17,10 @@ const email = uniqueEmail('pr');
 let itemUrl = '';
 
 const form = (p: Page, button: string | RegExp): Locator => p.locator('form', { has: p.getByRole('button', { name: button }) }).first();
-async function text(p: Page) { return norm(await p.locator('main').innerText()); }
+async function text(p: Page) {
+  await expect(p.locator('main')).not.toHaveText(/^\s*Carregando…\s*$/); // não ler o texto enquanto a página ainda carrega
+  return norm(await p.locator('main').innerText());
+}
 async function open(p: Page, summary: string | RegExp) {
   const d = p.locator('details', { has: p.locator('summary', { hasText: summary }) }).first();
   if (!(await d.evaluate((e) => (e as HTMLDetailsElement).open))) await d.locator('summary').first().click();
